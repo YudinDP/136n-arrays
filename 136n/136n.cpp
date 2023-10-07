@@ -6,7 +6,7 @@
 #include <cassert> //для assert-а
 #include <iomanip>  //для ограничения знаков precision после запятой
 #include <stdexcept>  //для обработки исключений
-#include <stdlib.h>  
+#include <stdlib.h>  //для использования abort(в связи непониманием неработы try catch)
 #include "136n_func.h"  //модуль
 using namespace std;  //стандартное пространоство имен, cout, cin
 
