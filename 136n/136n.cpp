@@ -7,6 +7,7 @@
 #include <iomanip>  //для ограничения знаков precision после запятой
 #include <stdexcept>  //для обработки исключений
 #include <stdlib.h>  //для использования abort(в связи непониманием неработы try catch)
+#include <vector>
 #include "136n_func.h"  //модуль
 using namespace std;  //стандартное пространоство имен, cout, cin
 
@@ -19,10 +20,11 @@ int main() {
 
 
 	///полный assert
-	{	unsigned n = 7;
-		double* b = new double[n] {345,35,34,53,53,453,3};
-		arrays::mass_fill(b, 7);   //супер-проверка работоспособности заполнения массива
+	{	unsigned n = 6;
+	std::vector<double> b(6);//{345,35,34,53,53,453,3};
+		arrays::mass_fill(b, 6);   //супер-проверка работоспособности заполнения массива
 		assert(b[n - 1] > -101 && b[n - 1] < 101);
+		//arrays::print_array(b, n);
 		assert(arrays::mass_sum(b, n) > -100.0 * n);//проверка функции суммы массива
 		double a0 = b[0], an = b[n - 1];
 		arrays::file_output(b, n, "test.txt");
@@ -50,13 +52,14 @@ int main() {
 	}
 		catch (const std::invalid_argument inval) {//ловим исключение
 			cout << inval.what() << endl;
-			abort();///////////////аборт для завершения программы
+			//abort();///////////////аборт для завершения программы
 		}
 	
 
 
 
-	double* a = new double[n], sum = 0.0, element;
+		std::vector<double> a(n);
+		double sum = 0.0;
 
 
 
@@ -76,7 +79,7 @@ int main() {
 	};
 
 	cout << "Элементы массива";
-	arrays::print_array(a, n);//функция своего пространства имен
+	//arrays::print_array(a, n);//функция своего пространства имен
 
 	cout << endl << "Сумма по формуле = " << sum; //вывод по формуле
 	cout << endl << "Сумма элементов массива = " << arrays::mass_sum(a, n) << endl << endl; //вывод суммы массива
