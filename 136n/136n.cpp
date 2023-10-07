@@ -6,6 +6,7 @@
 #include <cassert> //для assert-а
 #include <iomanip>  //для ограничения знаков precision после запятой
 #include <stdexcept>  //для обработки исключений
+#include <stdlib.h>  
 #include "136n_func.h"  //модуль
 using namespace std;  //стандартное пространоство имен, cout, cin
 
@@ -15,12 +16,18 @@ using namespace std;  //стандартное пространоство име
 //основная функция программы
 int main() {
 	srand(time(NULL));
-	{	unsigned n = 1000;
-		double* b = new double[n] {345,35,34,53,53,453,3,45};
-		// todo: ...
-		arrays::mass_fill(b, n);   //супер-проверка работоспособности заполнения массива
+
+
+	///полный assert
+	{	unsigned n = 7;
+		double* b = new double[n] {345,35,34,53,53,453,3};
+		arrays::mass_fill(b, 7);   //супер-проверка работоспособности заполнения массива
 		assert(b[n - 1] > -101 && b[n - 1] < 101);
 		assert(arrays::mass_sum(b, n) > -100.0 * n);//проверка функции суммы массива
+		double a0 = b[0], an = b[n - 1];
+		arrays::file_output(b, n, "test.txt");
+		arrays::file_input(b, n, "test.txt");
+		assert((b[0] - a0 < 0.01) && (b[n - 1] - an < 0.01));
 	}
 
 	//author Yudin D.
@@ -36,14 +43,19 @@ int main() {
 	catch (const std::length_error err) {   //ловим исключение
 		cout << err.what() << endl; //выводим сообщение о ошибке
 	}
-	catch (const std::invalid_argument inval) {
-		cout << inval.what() << endl;
-	}
-
 
 	cout << "Введите имя файла:" << endl;
-	cin >> Fname;
-	Fname = Fname + ".txt";
+	try {
+		Fname = arrays::ReadFileName();//может сгенерировать исключение
+	}
+		catch (const std::invalid_argument inval) {//ловим исключение
+			cout << inval.what() << endl;
+			abort();///////////////аборт для завершения программы
+		}
+	
+
+
+
 	double* a = new double[n], sum = 0.0, element;
 
 

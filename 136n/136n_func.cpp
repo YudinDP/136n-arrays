@@ -15,6 +15,8 @@ namespace arrays {
 			cout << "[" << a[i] << "],  ";
 		}
 	}
+
+
 	//ввод размера массива a(по большей части для try-catch)
 	int ReadArrLength() {
 		int len;
@@ -22,12 +24,23 @@ namespace arrays {
 		if ((len <= 0) ) {
 			throw std::length_error("(len <= 0) || (len >= 32769)");
 		}
-		if (typeid(len) != typeid(int)) {
-			throw std::invalid_argument("Длина массива некорректного типа");
-
-		}
+		
 		return len;
 	}
+	//ввод имени файла для вывода массива(по большей части для try-catch)
+	std::string ReadFileName() {
+		std::string FileName;
+		char rep[]{ '*', '/', ':', '?', '"', '<', '>', '|' };
+		cin >> FileName;
+		for (int i = 0; i < 8; i++) {
+			if (FileName.find(rep[i]) == FileName.npos) {
+				throw std::invalid_argument("Некорректное имя файла");
+			}
+			FileName = FileName + ".txt";
+			return FileName;
+		}
+	}
+
 
 	///заполняет массив a размером n рандомными числами
 	void mass_fill(double* a, unsigned n) {

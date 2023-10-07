@@ -11,6 +11,9 @@ namespace arrays {
 	///вводит длину массива a, так же нужна для try catch
 	int ReadArrLength();
 
+	///вводит имя файла для input/ouput массива в него, для try-catch так же
+	std::string ReadFileName();
+
 	///заполняет массив a размером n случайными числами
 	void mass_fill(double* a, unsigned n);
 
