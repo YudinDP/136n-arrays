@@ -1,5 +1,5 @@
 # 136n-arrays
-v. 1.3 
+v. 1.3    https://ivtipm.github.io/Programming/Glava06/index06.htm
 
 -Массивы в программе были замененены на векторы
 
