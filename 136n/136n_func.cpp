@@ -1,12 +1,12 @@
-#include <iostream> //ввод-вывод
-#include <time.h>//для рандом чисел
-#include <stdlib.h>// определяет функции srand,rand
-#include <fstream>  //ввод-вывод в файл
-#include <cmath>  //математика
-#include <string>  //для использования строк
-#include <typeinfo> //библиотека с типами данных для проверки длины массива try-catch
+#include <iostream> //РІРІРѕРґ-РІС‹РІРѕРґ
+#include <time.h>//РґР»СЏ СЂР°РЅРґРѕРј С‡РёСЃРµР»
+#include <stdlib.h>// РѕРїСЂРµРґРµР»СЏРµС‚ С„СѓРЅРєС†РёРё srand,rand
+#include <fstream>  //РІРІРѕРґ-РІС‹РІРѕРґ РІ С„Р°Р№Р»
+#include <cmath>  //РјР°С‚РµРјР°С‚РёРєР°
+#include <string>  //РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЃС‚СЂРѕРє
+#include <typeinfo> //Р±РёР±Р»РёРѕС‚РµРєР° СЃ С‚РёРїР°РјРё РґР°РЅРЅС‹С… РґР»СЏ РїСЂРѕРІРµСЂРєРё РґР»РёРЅС‹ РјР°СЃСЃРёРІР° try-catch
 #include <vector>
-#include <stdexcept>  //исключения exception
+#include <stdexcept>  //РёСЃРєР»СЋС‡РµРЅРёСЏ exception
 using namespace std;
 
 namespace arrays {
@@ -18,7 +18,7 @@ namespace arrays {
 	}
 
 
-	//ввод размера массива a(по большей части для try-catch)
+	//РІРІРѕРґ СЂР°Р·РјРµСЂР° РјР°СЃСЃРёРІР° a(РїРѕ Р±РѕР»СЊС€РµР№ С‡Р°СЃС‚Рё РґР»СЏ try-catch)
 	int ReadArrLength() {
 		int len;
 		cin >> len;
@@ -29,14 +29,14 @@ namespace arrays {
 			return len;
 		}
 	}
-	//ввод имени файла для вывода массива(по большей части для try-catch)
+	//РІРІРѕРґ РёРјРµРЅРё С„Р°Р№Р»Р° РґР»СЏ РІС‹РІРѕРґР° РјР°СЃСЃРёРІР°(РїРѕ Р±РѕР»СЊС€РµР№ С‡Р°СЃС‚Рё РґР»СЏ try-catch)
 	std::string ReadFileName() {
 		std::string FileName;
 		char rep[]{ '*', '/', ':', '?', '"', '<', '>', '|' };
 		cin >> FileName;
 		for (int i = 0; i < 8; i++) {
 			if (FileName.find(rep[i]) != FileName.npos) {
-				throw std::invalid_argument("Некорректное имя файла");
+				throw std::invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ РёРјСЏ С„Р°Р№Р»Р°");
 			}
 			FileName = FileName + ".txt";
 			return FileName;
@@ -44,7 +44,7 @@ namespace arrays {
 	}
 
 
-	///заполняет массив a размером n рандомными числами
+	///Р·Р°РїРѕР»РЅСЏРµС‚ РјР°СЃСЃРёРІ a СЂР°Р·РјРµСЂРѕРј n СЂР°РЅРґРѕРјРЅС‹РјРё С‡РёСЃР»Р°РјРё
 	void mass_fill(std::vector<double>& a, unsigned n) {
 	
 
@@ -55,7 +55,7 @@ namespace arrays {
 	}
 
 
-	///сумма элементов массива a
+	///СЃСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° a
 	double mass_sum(std::vector<double> a, unsigned n) {
 		double Msum = 0.0;
 		for (unsigned i = 0; i < n; i++) {
@@ -65,27 +65,27 @@ namespace arrays {
 	}
 
 
-	///выводит массив a в текстовый файл
+	///РІС‹РІРѕРґРёС‚ РјР°СЃСЃРёРІ a РІ С‚РµРєСЃС‚РѕРІС‹Р№ С„Р°Р№Р»
 	void file_output(std::vector<double> a, unsigned n, const std::string& Fname) {
-		std::ofstream out; //определение потока вывода в файл
-		out.open(Fname);  //открытие файла
-		if (out.is_open()) {   //проверка открытия файла
+		std::ofstream out; //РѕРїСЂРµРґРµР»РµРЅРёРµ РїРѕС‚РѕРєР° РІС‹РІРѕРґР° РІ С„Р°Р№Р»
+		out.open(Fname);  //РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
+		if (out.is_open()) {   //РїСЂРѕРІРµСЂРєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 			for (unsigned i = 0; i < n; i++) {
-				out << a[i] << endl;  //сам вывод
+				out << a[i] << endl;  //СЃР°Рј РІС‹РІРѕРґ
 			}
 		}
-		out.close();  //закрываем файл ввода
+		out.close();  //Р·Р°РєСЂС‹РІР°РµРј С„Р°Р№Р» РІРІРѕРґР°
 	}
 
 
-	///считает кол-во строк/элементов массива в файле
+	///СЃС‡РёС‚Р°РµС‚ РєРѕР»-РІРѕ СЃС‚СЂРѕРє/СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° РІ С„Р°Р№Р»Рµ
 	int File_str_count(const std::string& Fname) {
 		int count = 0;
 		std::string s;
 		std::ifstream f(Fname, ios::in);
 		if (f.is_open()) {
 			while (!f.eof()) {
-				count++;//пока файл не закончился читаем строки и увеличиваем счетчик
+				count++;//РїРѕРєР° С„Р°Р№Р» РЅРµ Р·Р°РєРѕРЅС‡РёР»СЃСЏ С‡РёС‚Р°РµРј СЃС‚СЂРѕРєРё Рё СѓРІРµР»РёС‡РёРІР°РµРј СЃС‡РµС‚С‡РёРє
 				getline(f, s);
 			}
 		}
@@ -93,7 +93,7 @@ namespace arrays {
 	}
 
 
-	///заполняет массив a размером n из текстового файла, в который он был ранее записан
+	///Р·Р°РїРѕР»РЅСЏРµС‚ РјР°СЃСЃРёРІ a СЂР°Р·РјРµСЂРѕРј n РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°, РІ РєРѕС‚РѕСЂС‹Р№ РѕРЅ Р±С‹Р» СЂР°РЅРµРµ Р·Р°РїРёСЃР°РЅ
 	void file_input(std::vector<double> a, unsigned n, const std::string& Fname) {
 		std::ifstream in(Fname);
 		if (in.is_open()) {

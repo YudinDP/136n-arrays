@@ -1,4 +1,4 @@
-﻿//задача 136н https://ivtipm.github.io/Programming/Glava06/index06.htm#z136
+//задача 136н https://ivtipm.github.io/Programming/Glava06/index06.htm#z136
 #include <iostream> //ввод-вывод
 #include <fstream>  //ввод-вывод в файл
 #include <cmath>  //для мат.функций
