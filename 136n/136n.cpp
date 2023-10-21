@@ -8,27 +8,35 @@
 #include <stdexcept>  //для обработки исключений
 #include <stdlib.h>  //для использования abort(в связи непониманием неработы try catch)
 #include <vector>
-#include "136n_func.h"  //модуль
+#include "C:/Users/Danya/source/repos/136n_func/136n_func/136n_func.h";  //модуль
 using namespace std;  //стандартное пространоство имен, cout, cin
 
 //свое пространство имен с функцией вывода массива a размером n
 
 
 //основная функция программы
-int main() {
+int main(int argc, char* argv[]) {
 	srand(time(NULL));
 
 
-	///полный assert
+///блок полный assert
 	{	unsigned n = 6;
-	std::vector<double> b(6);//{345,35,34,53,53,453,3};
-		arrays::mass_fill(b, 6);   //супер-проверка работоспособности заполнения массива
+	std::vector<double> b(n);//{345,35,34,53,53,453,3};
+		arrays::mass_fill(b);   //супер-проверка работоспособности заполнения массива
 		assert(b[n - 1] > -101 && b[n - 1] < 101);
 		//arrays::print_array(b, n);
-		assert(arrays::mass_sum(b, n) > -100.0 * n);//проверка функции суммы массива
+		assert(arrays::mass_sum(b) > -100.0 * n);//проверка функции суммы массива
+		
+		//проверка обычных файлов
 		double a0 = b[0], an = b[n - 1];
-		arrays::file_output(b, n, "test.txt");
-		arrays::file_input(b, n, "test.txt");
+		arrays::file_output(b, "test.txt");
+		arrays::file_input(b, "test.txt");
+		assert((b[0] - a0 < 0.01) && (b[n - 1] - an < 0.01));
+
+		//проверка файлов в бинарном режиме
+		a0 = b[0]; an = b[n - 1];
+		arrays::file_output_binary(b, "test_binary.txt");
+		arrays::file_input_binary(b, "test_binary.txt");
 		assert((b[0] - a0 < 0.01) && (b[n - 1] - an < 0.01));
 	}
 
@@ -37,8 +45,14 @@ int main() {
 	setlocale(LC_ALL, "Russian");  //русская локализация
 	unsigned n;//кол-во элементов массива
 	std::string Fname;
-
-	cout << "кол-во элементов массива?" << endl;
+	//cmd args
+if (argc == 3) {
+		n = stoi(argv[1]);//через cmd arg вводим кол-во элементов вектора и имя файла
+		Fname = argv[2];
+}
+else {
+	///блок try-catch
+	cout << "Number of array elements" << endl;
 	try {
 		n = arrays::ReadArrLength();//может сгенерировать исключение
 	}
@@ -46,42 +60,42 @@ int main() {
 		cout << err.what() << endl; //выводим сообщение о ошибке
 	}
 
-	cout << "Введите имя файла:" << endl;
+	cout << "Input filename:" << endl;
 	try {
 		Fname = arrays::ReadFileName();//может сгенерировать исключение
 	}
-		catch (const std::invalid_argument inval) {//ловим исключение
-			cout << inval.what() << endl;
-			//abort();///////////////аборт для завершения программы
-		}
-	
-
-
+	catch (const std::invalid_argument inval) {//ловим исключение
+		cout << inval.what() << endl;
+		//abort();///////////////аборт для завершения программы
+	}
+}
 
 		std::vector<double> a(n);
 		double sum = 0.0;
+	arrays::mass_fill(a);  //заполнение массива
 
 
-
-	arrays::mass_fill(a, n);  //заполнение массива
-	arrays::file_output(a, n, Fname);  //вывод в файл
-	arrays::file_input(a, n, Fname);  //заполнение массива из файла
-
+///блок с файлами
+	//arrays::file_output(a, Fname);  //вывод в файл
+	//arrays::file_input(a, Fname);  //заполнение массива из файла
+	arrays::file_output_binary(a, Fname); //вывод в файл в бинарном режиме
+	arrays::file_input_binary(a, Fname); //заполнение массива из файла в бинарном режиме
 
 	//сумма по формуле
 	for (int i = 0; i < n; i++) {
 		sum = (sum + (pow(sqrt(fabs(a[i])) - a[i], 2)));
 	};
-
+///блок вывода ответов
 	//вывод элементов массива и элементов суммы по формуле
 	for (int i = 0; i < n; i++) {
 		cout << "a[" << i << "]" << setfill(' ') << setw(8) << fixed << a[i] << setfill(' ') << setw(12) << fixed << (pow(sqrt(fabs(a[i])) - a[i], 2)) << endl;
 	};
 
-	cout << "Элементы массива";
-	//arrays::print_array(a, n);//функция своего пространства имен
-
-	cout << endl << "Сумма по формуле = " << sum; //вывод по формуле
-	cout << endl << "Сумма элементов массива = " << arrays::mass_sum(a, n) << endl << endl; //вывод суммы массива
+	cout << "Elements of array";
+	arrays::print_array(a);//функция своего пространства имен
+	cout << endl;
+	cout << endl << "Sum according to formula = " << sum; //вывод по формуле
+	cout << endl;
+	cout << endl << "Sum of array elements = " << arrays::mass_sum(a) << endl << endl; //вывод суммы массива
 
 }
