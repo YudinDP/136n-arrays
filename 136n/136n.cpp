@@ -8,7 +8,7 @@
 #include <stdexcept>  //для обработки исключений
 #include <stdlib.h>  //для использования abort(в связи непониманием неработы try catch)
 #include <vector>
-#include "C:/Users/Danya/source/repos/136n_func/136n_func/136n_func.h";  //модуль
+#include "136n_func.h";  //модуль
 using namespace std;  //стандартное пространоство имен, cout, cin
 
 //свое пространство имен с функцией вывода массива a размером n

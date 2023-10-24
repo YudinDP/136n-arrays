@@ -1,5 +1,0 @@
-﻿  136n_func.cpp
-C:\Users\Danya\source\repos\136n_func\136n_func\136n_func.cpp(100,27): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Danya\source\repos\136n_func\136n_func\136n_func.cpp(122,27): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Danya\source\repos\136n_func\136n_func\136n_func.cpp(44): warning C4715: arrays::ReadFileName: значение возвращается не при всех путях выполнения
-  136n_func.vcxproj -> C:\Users\Danya\source\repos\136n_func\x64\Debug\136n_func.lib
