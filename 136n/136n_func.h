@@ -2,35 +2,35 @@
 //author Yudin D.
 namespace arrays {
 
-	///выводит вектор на экран
-	void print_array(std::vector<double>& a);
+	///РІС‹РІРѕРґРёС‚ РІРµРєС‚РѕСЂ РЅР° СЌРєСЂР°РЅ
+	void print_array(std::vector<double> a);
+		
 
-
-	///считает кол-во строк/элементов вектор a в файле
+	///СЃС‡РёС‚Р°РµС‚ РєРѕР»-РІРѕ СЃС‚СЂРѕРє/СЌР»РµРјРµРЅС‚РѕРІ РІРµРєС‚РѕСЂ a РІ С„Р°Р№Р»Рµ
 	int File_str_count(const std::string& Fname);
 
-	///вводит длину вектор a, так же нужна для try catch
+	///РІРІРѕРґРёС‚ РґР»РёРЅСѓ РІРµРєС‚РѕСЂ a, С‚Р°Рє Р¶Рµ РЅСѓР¶РЅР° РґР»СЏ try catch
 	int ReadArrLength();
 
-	///вводит имя файла для input/ouput вектор в него, для try-catch так же
+	///РІРІРѕРґРёС‚ РёРјСЏ С„Р°Р№Р»Р° РґР»СЏ input/ouput РІРµРєС‚РѕСЂ РІ РЅРµРіРѕ, РґР»СЏ try-catch С‚Р°Рє Р¶Рµ
 	std::string ReadFileName();
 
-	///заполняет вектор a размером n случайными числами
+	///Р·Р°РїРѕР»РЅСЏРµС‚ РІРµРєС‚РѕСЂ a СЂР°Р·РјРµСЂРѕРј n СЃР»СѓС‡Р°Р№РЅС‹РјРё С‡РёСЃР»Р°РјРё
 	void mass_fill(std::vector<double>& a);
 
-	///возвращает сумму элементов вектор a размером n
-	double mass_sum(std::vector<double>& a);
+	///РІРѕР·РІСЂР°С‰Р°РµС‚ СЃСѓРјРјСѓ СЌР»РµРјРµРЅС‚РѕРІ РІРµРєС‚РѕСЂ a СЂР°Р·РјРµСЂРѕРј n
+	double mass_sum(std::vector<double> a);
 
-	///выводит вектор a  размером n в текстовый файл Fname
-	void file_output(std::vector<double>& a, const std::string& Fname);
+	///РІС‹РІРѕРґРёС‚ РІРµРєС‚РѕСЂ a  СЂР°Р·РјРµСЂРѕРј n РІ С‚РµРєСЃС‚РѕРІС‹Р№ С„Р°Р№Р» Fname
+	void file_output(std::vector<double> a, const std::string& Fname);
 
-	///заполняет вектор a размером n из текстового файла Fname, в который он был ранее записан
+	///Р·Р°РїРѕР»РЅСЏРµС‚ РІРµРєС‚РѕСЂ a СЂР°Р·РјРµСЂРѕРј n РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р° Fname, РІ РєРѕС‚РѕСЂС‹Р№ РѕРЅ Р±С‹Р» СЂР°РЅРµРµ Р·Р°РїРёСЃР°РЅ
 	void file_input(std::vector<double> a, const std::string& Fname);
+	
+	//Р·Р°РїРёСЃСЊ РІ С„Р°Р№Р» РІ РґРІРѕРёС‡РЅРѕРј СЂРµР¶РёРјРµ 
+	void file_output_binary(std::vector<double> a, const std::string& Fname);
 
-	//запись в файл в двоичном режиме 
-	void file_output_binary(std::vector<double>& a, const std::string& Fname);
-
-	//вывод из файла в вектор в двоичном режиме
+	//РІС‹РІРѕРґ РёР· С„Р°Р№Р»Р° РІ РІРµРєС‚РѕСЂ РІ РґРІРѕРёС‡РЅРѕРј СЂРµР¶РёРјРµ
 	void file_input_binary(std::vector<double> a, const std::string& Fname);
 
 }

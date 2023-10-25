@@ -1,42 +1,42 @@
-#include <iostream> //ввод-вывод
-#include <time.h>//для рандом чисел
-#include <stdlib.h>// определяет функции srand,rand
-#include <fstream>  //ввод-вывод в файл
-#include <cmath>  //математика
-#include <string>  //для использования строк
-#include <typeinfo> //библиотека с типами данных для проверки длины массива try-catch
+#include <iostream> //РІРІРѕРґ-РІС‹РІРѕРґ
+#include <time.h>//РґР»СЏ СЂР°РЅРґРѕРј С‡РёСЃРµР»
+#include <stdlib.h>// РѕРїСЂРµРґРµР»СЏРµС‚ С„СѓРЅРєС†РёРё srand,rand
+#include <fstream>  //РІРІРѕРґ-РІС‹РІРѕРґ РІ С„Р°Р№Р»
+#include <cmath>  //РјР°С‚РµРјР°С‚РёРєР°
+#include <string>  //РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЃС‚СЂРѕРє
+#include <typeinfo> //Р±РёР±Р»РёРѕС‚РµРєР° СЃ С‚РёРїР°РјРё РґР°РЅРЅС‹С… РґР»СЏ РїСЂРѕРІРµСЂРєРё РґР»РёРЅС‹ РјР°СЃСЃРёРІР° try-catch
 #include <vector>
-#include <stdexcept>  //исключения exception
+#include <stdexcept>  //РёСЃРєР»СЋС‡РµРЅРёСЏ exception
 using namespace std;
 
 namespace arrays {
 
-	void print_array(std::vector<double>& a) {
+	void print_array(std::vector<double> a) {
 		for (unsigned i = 0; i < a.size(); i++) {
 			cout << "[" << a[i] << "],  ";
 		}
 	}
 
 
-	//ввод размера массива a(по большей части для try-catch)
+	//РІРІРѕРґ СЂР°Р·РјРµСЂР° РјР°СЃСЃРёРІР° a(РїРѕ Р±РѕР»СЊС€РµР№ С‡Р°СЃС‚Рё РґР»СЏ try-catch)
 	int ReadArrLength() {
 		int len;
 		cin >> len;
-		if ((len <= 0)) {
+		if ((len <= 0) ) {
 			throw std::length_error("(len <= 0) || (len >= 32769)");
 		}
 		else {
 			return len;
 		}
 	}
-	//ввод имени файла для вывода массива(по большей части для try-catch)
+	//РІРІРѕРґ РёРјРµРЅРё С„Р°Р№Р»Р° РґР»СЏ РІС‹РІРѕРґР° РјР°СЃСЃРёРІР°(РїРѕ Р±РѕР»СЊС€РµР№ С‡Р°СЃС‚Рё РґР»СЏ try-catch)
 	std::string ReadFileName() {
 		std::string FileName;
 		char rep[]{ '*', '/', ':', '?', '"', '<', '>', '|' };
 		cin >> FileName;
 		for (int i = 0; i < 8; i++) {
 			if (FileName.find(rep[i]) != FileName.npos) {
-				throw std::invalid_argument("Некорректное имя файла");
+				throw std::invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ РёРјСЏ С„Р°Р№Р»Р°");
 			}
 			FileName = FileName + ".txt";
 			return FileName;
@@ -44,9 +44,9 @@ namespace arrays {
 	}
 
 
-	///заполняет массив a размером n рандомными числами
+	///Р·Р°РїРѕР»РЅСЏРµС‚ РјР°СЃСЃРёРІ a СЂР°Р·РјРµСЂРѕРј n СЂР°РЅРґРѕРјРЅС‹РјРё С‡РёСЃР»Р°РјРё
 	void mass_fill(std::vector<double>& a) {
-
+	
 
 		for (unsigned i = 0; i < a.size(); i++) {
 			a[i] = (1.0 * rand() / RAND_MAX * 200 - 100); //((rand() % 100) + rand()%100/100.0);
@@ -55,8 +55,8 @@ namespace arrays {
 	}
 
 
-	///сумма элементов массива a
-	double mass_sum(std::vector<double>& a) {
+	///СЃСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° a
+	double mass_sum(std::vector<double> a) {
 		double Msum = 0.0;
 		for (unsigned i = 0; i < a.size(); i++) {
 			Msum = Msum + a[i];
@@ -65,27 +65,27 @@ namespace arrays {
 	}
 
 
-	///выводит массив a в текстовый файл
-	void file_output(std::vector<double>& a, const std::string& Fname) {
-		std::ofstream out; //определение потока вывода в файл
-		out.open(Fname);  //открытие файла
-		if (out.is_open()) {   //проверка открытия файла
+	///РІС‹РІРѕРґРёС‚ РјР°СЃСЃРёРІ a РІ С‚РµРєСЃС‚РѕРІС‹Р№ С„Р°Р№Р»
+	void file_output(std::vector<double> a, const std::string& Fname) {
+		std::ofstream out; //РѕРїСЂРµРґРµР»РµРЅРёРµ РїРѕС‚РѕРєР° РІС‹РІРѕРґР° РІ С„Р°Р№Р»
+		out.open(Fname);  //РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
+		if (out.is_open()) {   //РїСЂРѕРІРµСЂРєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 			for (unsigned i = 0; i < a.size(); i++) {
-				out << a[i] << endl;  //сам вывод
+				out << a[i] << endl;  //СЃР°Рј РІС‹РІРѕРґ
 			}
 		}
-		out.close();  //закрываем файл ввода
+		out.close();  //Р·Р°РєСЂС‹РІР°РµРј С„Р°Р№Р» РІРІРѕРґР°
 	}
 
 
-	///считает кол-во строк/элементов массива в файле
+	///СЃС‡РёС‚Р°РµС‚ РєРѕР»-РІРѕ СЃС‚СЂРѕРє/СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° РІ С„Р°Р№Р»Рµ
 	int File_str_count(const std::string& Fname) {
 		int count = 0;
 		std::string s;
 		std::ifstream f(Fname, ios::in);
 		if (f.is_open()) {
 			while (!f.eof()) {
-				count++;//пока файл не закончился читаем строки и увеличиваем счетчик
+				count++;//РїРѕРєР° С„Р°Р№Р» РЅРµ Р·Р°РєРѕРЅС‡РёР»СЃСЏ С‡РёС‚Р°РµРј СЃС‚СЂРѕРєРё Рё СѓРІРµР»РёС‡РёРІР°РµРј СЃС‡РµС‚С‡РёРє
 				getline(f, s);
 			}
 		}
@@ -93,36 +93,36 @@ namespace arrays {
 	}
 
 
-	///заполняет вектор a размером n из текстового файла, в который он был ранее записан
+	///Р·Р°РїРѕР»РЅСЏРµС‚ РІРµРєС‚РѕСЂ a СЂР°Р·РјРµСЂРѕРј n РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°, РІ РєРѕС‚РѕСЂС‹Р№ РѕРЅ Р±С‹Р» СЂР°РЅРµРµ Р·Р°РїРёСЃР°РЅ
 	void file_input(std::vector<double> a, const std::string& Fname) {
 		std::ifstream in(Fname);
 		if (in.is_open()) {
-			for (unsigned i = 0; i < (File_str_count(Fname) - 1); i++) {
+			for (unsigned i = 0; i < (File_str_count(Fname)-1); i++) {
 				in >> a[i];
 			}
 		}
 		in.close();
 	}
 
-	//запись в файл в двоичном режиме
-	void file_output_binary(std::vector<double>& a, const std::string& Fname) {
-		std::ofstream out(Fname, ios::binary | ios::out);//открываем файлик в двоичном режиме для записи
-		if (out.is_open()) {   //проверка открытия файла
+	//Р·Р°РїРёСЃСЊ РІ С„Р°Р№Р» РІ РґРІРѕРёС‡РЅРѕРј СЂРµР¶РёРјРµ
+	void file_output_binary(std::vector<double> a, const std::string& Fname) {
+		std::ofstream out(Fname, ios::binary | ios::out);//РѕС‚РєСЂС‹РІР°РµРј С„Р°Р№Р»РёРє РІ РґРІРѕРёС‡РЅРѕРј СЂРµР¶РёРјРµ РґР»СЏ Р·Р°РїРёСЃРё
+		if (out.is_open()) {   //РїСЂРѕРІРµСЂРєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 			for (unsigned i = 0; i < a.size(); i++) {
-				out << a[i] << endl;  //сам вывод
+				out << a[i] << endl;  //СЃР°Рј РІС‹РІРѕРґ
 			}
 		}
-		out.close();  //закрываем файл ввода
+		out.close();  //Р·Р°РєСЂС‹РІР°РµРј С„Р°Р№Р» РІРІРѕРґР°
 	}
 
-	//вывод из файла в вектор в двоичном режиме
+	//РІС‹РІРѕРґ РёР· С„Р°Р№Р»Р° РІ РІРµРєС‚РѕСЂ РІ РґРІРѕРёС‡РЅРѕРј СЂРµР¶РёРјРµ
 	void file_input_binary(std::vector<double> a, const std::string& Fname) {
-		std::ifstream in(Fname, ios::binary | ios::in);//открываем файлик в двоичном режиме для вывода
-		if (in.is_open()) {//проверка открытия
+		std::ifstream in(Fname, ios::binary | ios::in);//РѕС‚РєСЂС‹РІР°РµРј С„Р°Р№Р»РёРє РІ РґРІРѕРёС‡РЅРѕРј СЂРµР¶РёРјРµ РґР»СЏ РІС‹РІРѕРґР°
+		if (in.is_open()) {//РїСЂРѕРІРµСЂРєР° РѕС‚РєСЂС‹С‚РёСЏ
 			for (unsigned i = 0; i < (File_str_count(Fname) - 1); i++) {
-				in >> a[i];//заполнение в вектор
+				in >> a[i];//Р·Р°РїРѕР»РЅРµРЅРёРµ РІ РІРµРєС‚РѕСЂ
 			}
 		}
-		in.close();//закрываем
+		in.close();//Р·Р°РєСЂС‹РІР°РµРј
 	}
 }
