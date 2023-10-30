@@ -10,8 +10,9 @@
 using namespace std;
 
 namespace arrays {
-
-	void print_array(std::vector<double> a) {
+	/*
+	template<typename type>
+	void print_array(std::vector<type> a) {
 		for (unsigned i = 0; i < a.size(); i++) {
 			cout << "[" << a[i] << "],  ";
 		}
@@ -45,7 +46,8 @@ namespace arrays {
 
 
 	///заполняет массив a размером n рандомными числами
-	void mass_fill(std::vector<double>& a) {
+	template<typename type>
+	void mass_fill(std::vector<type>& a) {
 	
 
 		for (unsigned i = 0; i < a.size(); i++) {
@@ -56,7 +58,8 @@ namespace arrays {
 
 
 	///сумма элементов массива a
-	double mass_sum(std::vector<double> a) {
+	template<typename type>
+	type mass_sum(std::vector<type> a) {
 		double Msum = 0.0;
 		for (unsigned i = 0; i < a.size(); i++) {
 			Msum = Msum + a[i];
@@ -66,7 +69,8 @@ namespace arrays {
 
 
 	///выводит массив a в текстовый файл
-	void file_output(std::vector<double> a, const std::string& Fname) {
+	template<typename type>
+	void file_output(std::vector<type> a, const std::string& Fname) {
 		std::ofstream out; //определение потока вывода в файл
 		out.open(Fname);  //открытие файла
 		if (out.is_open()) {   //проверка открытия файла
@@ -94,7 +98,8 @@ namespace arrays {
 
 
 	///заполняет вектор a размером n из текстового файла, в который он был ранее записан
-	void file_input(std::vector<double> a, const std::string& Fname) {
+	template<typename type>
+	void file_input(std::vector<type> a, const std::string& Fname) {
 		std::ifstream in(Fname);
 		if (in.is_open()) {
 			for (unsigned i = 0; i < (File_str_count(Fname)-1); i++) {
@@ -105,7 +110,8 @@ namespace arrays {
 	}
 
 	//запись в файл в двоичном режиме
-	void file_output_binary(std::vector<double> a, const std::string& Fname) {
+	template<typename type>
+	void file_output_binary(std::vector<type> a, const std::string& Fname) {
 		std::ofstream out(Fname, ios::binary | ios::out);//открываем файлик в двоичном режиме для записи
 		if (out.is_open()) {   //проверка открытия файла
 			for (unsigned i = 0; i < a.size(); i++) {
@@ -116,7 +122,8 @@ namespace arrays {
 	}
 
 	//вывод из файла в вектор в двоичном режиме
-	void file_input_binary(std::vector<double> a, const std::string& Fname) {
+	template<typename type>
+	void file_input_binary(std::vector<type> a, const std::string& Fname) {
 		std::ifstream in(Fname, ios::binary | ios::in);//открываем файлик в двоичном режиме для вывода
 		if (in.is_open()) {//проверка открытия
 			for (unsigned i = 0; i < (File_str_count(Fname) - 1); i++) {
@@ -125,4 +132,4 @@ namespace arrays {
 		}
 		in.close();//закрываем
 	}
-}
+*/}
