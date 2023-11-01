@@ -97,5 +97,12 @@ else {
 	cout << endl << "Sum according to formula = " << sum; //вывод по формуле
 	cout << endl;
 	cout << endl << "Sum of array elements = " << arrays::mass_sum(a) << endl << endl; //вывод суммы массива
-
+	
+	//пример работы с template-функцией
+	std::vector<int> test;
+	for (int i = 0; i < 5; i++) {
+		test.push_back(1);
+		test[i] = i;
+	}
+	arrays::print_array(test);
 }
